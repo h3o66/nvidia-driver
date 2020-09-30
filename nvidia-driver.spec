@@ -6,7 +6,7 @@
 %endif
 
 Name:           nvidia-driver
-Version:        450.66
+Version:        455.22.04
 Release:        1%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
@@ -234,7 +234,7 @@ mkdir -p %{buildroot}%{_datadir}/X11/xorg.conf.d/
 install -p -m 0755 nvidia.icd %{buildroot}%{_sysconfdir}/OpenCL/vendors/
 
 # Binaries
-install -p -m 0755 nvidia-{debugdump,smi,cuda-mps-control,cuda-mps-server,bug-report.sh} %{buildroot}%{_bindir}
+install -p -m 0755 nvidia-{debugdump,smi,cuda-mps-control,cuda-mps-server,bug-report.sh,ngx-updater} %{buildroot}%{_bindir}
 
 # Man pages
 install -p -m 0644 nvidia-{smi,cuda-mps-control}*.gz %{buildroot}%{_mandir}/man1/
@@ -348,6 +348,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/com.nvidia.dri
 %dir %{_sysconfdir}/nvidia
 %config(noreplace) %{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
 %{_bindir}/nvidia-bug-report.sh
+%{_bindir}/nvidia-ngx-updater
 %if 0%{?fedora} || 0%{?rhel} >= 8
 %{_metainfodir}/com.nvidia.driver.metainfo.xml
 %endif
@@ -448,6 +449,10 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/com.nvidia.dri
 %{_libdir}/libnvidia-ml.so.%{version}
 
 %changelog
+* Wed Sep 30 2020 Christian Birk <chris.h3o66@gmail.com> - 3:455.22.04-1
+- Update to 455.22.04
+- Add nvidia-ngx-updater to package
+
 * Thu Aug 20 2020 Simone Caronni <negativo17@gmail.com> - 3:450.66-1
 - Update to 450.66.
 
