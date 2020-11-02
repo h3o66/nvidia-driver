@@ -2,14 +2,21 @@
 set -e
 
 VERSION=${VERSION:-455.26.02}
+VULKAN_DEV_DRIVER=1
 DL_SITE=${DL_SITE:-http://us.download.nvidia.com/XFree86}
 TEMP_UNPACK=${TEMP_UNPACK:-temp}
 
 PLATFORM=Linux-x86_64
 RUN_FILE=NVIDIA-${PLATFORM}-${VERSION}.run
 
+if [ $VULKAN_DEV_DRIVER -eq 1 ]; then
+	DL_LINK="https://developer.nvidia.com/vulkan-beta-${VERSION//.}-linux"
+else
+	DL_LINK="${DL_SITE}/${PLATFORM}/${VERSION}/$RUN_FILE"
+fi
+
 printf "Downloading installer ${RUN_FILE}... "
-[[ -f $RUN_FILE ]] || wget -c -q ${DL_SITE}/${PLATFORM}/${VERSION}/$RUN_FILE
+[[ -f $RUN_FILE ]] || wget -c -q -O "${RUN_FILE}" "${DL_LINK}"
 printf "OK\n"
 
 sh ${RUN_FILE} --extract-only --target ${TEMP_UNPACK}
