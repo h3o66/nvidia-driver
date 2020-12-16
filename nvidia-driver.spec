@@ -6,7 +6,7 @@
 %endif
 
 Name:           nvidia-driver
-Version:        455.46.02
+Version:        455.46.04
 Release:        1%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
@@ -449,6 +449,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/com.nvidia.dri
 %{_libdir}/libnvidia-ml.so.%{version}
 
 %changelog
+* Wed Dec 16 2020 Christian Birk <mail@birkc.de> - 3:455.46.04-1
+- Update to 455.46.04
+
 * Mon Nov 23 2020 Christian Birk <mail@birkc.de> - 3:455.46.02-1
 - Update to 455.46.02
 
