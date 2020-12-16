@@ -6,8 +6,8 @@
 %endif
 
 Name:           nvidia-driver
-Version:        455.23.04
-Release:        2%{?dist}
+Version:        460.27.04
+Release:        1%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
 License:        NVIDIA License
@@ -242,12 +242,12 @@ install -p -m 0644 nvidia-{smi,cuda-mps-control}*.gz %{buildroot}%{_mandir}/man1
 %if 0%{?fedora} || 0%{?rhel} >= 8
 # install AppData and add modalias provides
 install -D -p -m 0644 %{SOURCE40} %{buildroot}%{_metainfodir}/com.nvidia.driver.metainfo.xml
-fn=%{buildroot}%{_metainfodir}/com.nvidia.driver.metainfo.xml
-%{SOURCE41} README.txt "NVIDIA GEFORCE GPUS" | xargs appstream-util add-provide ${fn} modalias
-%{SOURCE41} README.txt "NVIDIA QUADRO GPUS" | xargs appstream-util add-provide ${fn} modalias
-%{SOURCE41} README.txt "NVIDIA NVS GPUS" | xargs appstream-util add-provide ${fn} modalias
-%{SOURCE41} README.txt "NVIDIA TESLA GPUS" | xargs appstream-util add-provide ${fn} modalias
-%{SOURCE41} README.txt "NVIDIA GRID GPUS" | xargs appstream-util add-provide ${fn} modalias
+#fn=%{buildroot}%{_metainfodir}/com.nvidia.driver.metainfo.xml
+#%{SOURCE41} README.txt "NVIDIA GEFORCE GPUS" | xargs appstream-util add-provide ${fn} modalias
+#%{SOURCE41} README.txt "NVIDIA QUADRO GPUS" | xargs appstream-util add-provide ${fn} modalias
+#%{SOURCE41} README.txt "NVIDIA NVS GPUS" | xargs appstream-util add-provide ${fn} modalias
+#%{SOURCE41} README.txt "NVIDIA TESLA GPUS" | xargs appstream-util add-provide ${fn} modalias
+#%{SOURCE41} README.txt "NVIDIA GRID GPUS" | xargs appstream-util add-provide ${fn} modalias
 %endif
 
 %if 0%{?rhel} == 6
@@ -344,7 +344,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/com.nvidia.dri
 
 %files
 %license LICENSE
-%doc NVIDIA_Changelog README.txt html supported-gpus.json
+%doc NVIDIA_Changelog README.txt html supported-gpus/supported-gpus.json
 %dir %{_sysconfdir}/nvidia
 %config(noreplace) %{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
 %{_bindir}/nvidia-bug-report.sh
@@ -449,6 +449,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/com.nvidia.dri
 %{_libdir}/libnvidia-ml.so.%{version}
 
 %changelog
+* Tue Dec 15 2020 Christian Birk <mail@birkc.de> - 3:460.27.04-1
+- Update to 460.27.04
+
 * Tue Sep 22 2020 Christian Birk <chris.h3o66@gmail.com> - 3:455.23.04-2
 - add nvidia-ngx-updater from latest updater
 
@@ -472,7 +475,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/com.nvidia.dri
 * Fri Feb 28 2020 Simone Caronni <negativo17@gmail.com> - 3:440.64-1
 - Update to 440.64.
 
-* Tue Feb 14 2020 Jens Peters <jp7677@gmail.com> - 3:440.59-2
+* Fri Feb 14 2020 Jens Peters <jp7677@gmail.com> - 3:440.59-2
 - Ensure that only one Vulkan ICD manifest is present.
 
 * Tue Feb 04 2020 Simone Caronni <negativo17@gmail.com> - 3:440.59-1
