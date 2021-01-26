@@ -2,7 +2,7 @@
 %global __strip /bin/true
 
 Name:           nvidia-driver
-Version:        460.32.03
+Version:        460.39
 Release:        1%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
