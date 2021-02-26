@@ -2,7 +2,7 @@
 %global __strip /bin/true
 
 Name:           nvidia-driver
-Version:        460.39
+Version:        460.56
 Release:        1%{?dist}
 Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
 Epoch:          3
@@ -399,6 +399,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/com.nvidia.dri
 %{_libdir}/libnvidia-ml.so.%{version}
 
 %changelog
+* Fri Feb 26 2021 Christian Birk <mail@birkc.de> - 3:460.56-1
+- Update to 460.56
+
 * Thu Jan  7 2021 Christian Birk <mail@birkc.de> - 3:460.32.03-1
 - Update to 460.32.03
 
